@@ -21,6 +21,7 @@ import java.util.List;
 @Api(description="讲师管理")
 @RestController
 @RequestMapping("/eduservice/teacher")
+@CrossOrigin//解决跨域问题
 public class EduTeacherController {
 
     //访问地址： http://localhost:8001/eduservice/teacher/findAll
@@ -61,12 +62,12 @@ public class EduTeacherController {
         //创建page对象
         Page<EduTeacher> pageTeacher = new Page<>(current,limit);
 
-        try {
-            int i = 10/0;
-        }catch(Exception e) {
-            //执行自定义异常
-            throw new GuliException(20001,"执行了自定义异常处理....");
-        }
+//        try {
+//            int i = 10/0;
+//        }catch(Exception e) {
+//            //执行自定义异常
+//            throw new GuliException(20001,"执行了自定义异常处理....");
+//        }
 
 
         //调用方法实现分页
@@ -85,7 +86,7 @@ public class EduTeacherController {
     }
 
     //4 条件查询带分页的方法
-    @ApiOperation(value = "多条件组合查询讲师")
+    @ApiOperation(value = "条件查询带分页")
     @PostMapping("pageTeacherCondition/{current}/{limit}")
     public R pageTeacherCondition(@PathVariable long current,@PathVariable long limit,
                                   @RequestBody(required = false)  TeacherQuery teacherQuery) {
@@ -94,17 +95,17 @@ public class EduTeacherController {
 
         //构建条件
         QueryWrapper<EduTeacher> wrapper = new QueryWrapper<>();
-       // 多条件组合查询
+        // 多条件组合查询
         // mybatis学过 动态sql
-        String name = teacherQuery.getName();
+//        String name = teacherQuery.getName();
         Integer level = teacherQuery.getLevel();
         String begin = teacherQuery.getBegin();
         String end = teacherQuery.getEnd();
         //判断条件值是否为空，如果不为空拼接条件
-        if(!StringUtils.isEmpty(name)) {
-            //构建条件
-            wrapper.like("name",name);
-        }
+//        if(!StringUtils.isEmpty(name)) {
+//            //构建条件
+//            wrapper.like("name",name);
+//        }
         if(!StringUtils.isEmpty(level)) {
             wrapper.eq("level",level);
         }
@@ -114,6 +115,9 @@ public class EduTeacherController {
         if(!StringUtils.isEmpty(end)) {
             wrapper.le("gmt_create",end);
         }
+
+        //排序
+        wrapper.orderByDesc("gmt_create");
 
         //调用方法实现条件查询分页
         teacherService.page(pageTeacher,wrapper);

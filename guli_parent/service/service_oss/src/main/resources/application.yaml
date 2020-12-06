@@ -1,0 +1,23 @@
+# OSS相关配置信息 （OSS官网配置信息）
+aliyun:
+  oss:
+    # oss对外服务的访问域名
+    endpoint: oss-cn-beijing.aliyuncs.com
+    # 访问身份验证中用到用户标识
+    accessKeyId: LTAI4G1sk53DNbDLvcxrs6MT
+    # 用户用于加密签名字符串和oss用来验证签名字符串的密钥
+    accessKeySecret: LZYSYBjCkPWncb5PKnassbpSXxewoE
+    bucketName: edu-9816
+  env: dev
+
+
+#服务端口号
+server:
+  port: 8002
+
+spring:
+  application:
+    #服务名
+    name: service-oss
+  profiles:
+    active: dev

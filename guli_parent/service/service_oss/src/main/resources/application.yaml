@@ -4,9 +4,9 @@ aliyun:
     # oss对外服务的访问域名
     endpoint: oss-cn-beijing.aliyuncs.com
     # 访问身份验证中用到用户标识
-    accessKeyId: LTAI4G1sk53DNbDLvcxrs6MT
+    accessKeyId: 
     # 用户用于加密签名字符串和oss用来验证签名字符串的密钥
-    accessKeySecret: LZYSYBjCkPWncb5PKnassbpSXxewoE
+    accessKeySecret: 
     bucketName: edu-9816
   env: dev
 
